@@ -59,7 +59,16 @@ export default {
     }
   },
   created() {
-    this.getSubs()
+    if (this.$store.state.contract && this.$store.state.contract.contractId) {
+      this.getSubs()
+    }
+  },
+  watch: {
+    "$store.state.contract"(val) {
+      if (val && val.contractId) {
+        this.getSubs()
+      }
+    }
   },
   methods: {
     publish(name) {

@@ -11,7 +11,8 @@ export default new Vuex.Store({
     near: null,
     walletAccount: null,
     accountId: null,
-    contract: null
+    contract: null,
+    currentTab: 1 // 当前tab项
   },
   getters: {
     isLogin(state) {
@@ -123,6 +124,7 @@ export default new Vuex.Store({
     // 获取用户能看见的的Submit ids
     GetPosts(context) {
       context.state.contract.getSeeSubmits({"user": context.state.accountId}).then(response => {
+        console.log(response)
         if (response.objs == null || response.objs.length == 0 ) {
           // 该用户没有内容
           // 去订阅界面

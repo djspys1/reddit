@@ -30,13 +30,8 @@ export default {
   data() {
     return {
       tabs: [
-        {id: 1, name: '热门'},
-        {id: 2, name: '最新'},
-        {id: 3, name: '好评上升中'},
-        {id: 4, name: '具争议的'},
-        {id: 5, name: '头等'},
-        {id: 6, name: '含金文章'},
-        {id: 7, name: 'wiki'},
+        {id: 1, name: '帖子'},
+        {id: 2, name: '栏目'}
       ],
       currentTab: 1
     }
