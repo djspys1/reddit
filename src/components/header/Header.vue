@@ -15,8 +15,8 @@
       </ul>
     </div>
     <div class="header-bottom-right">
-      <div class="create">创建栏目</div>
-      <div class="publish" @click="publish">发布帖子</div>
+      <router-link tag="div" class="create" :to="{ name: 'subReddit'}">创建栏目</router-link>
+      <router-link tag="div" class="publish" :to="{ name: 'publish'}">发布帖子</router-link>
       <div class="sign" @click="signOut">{{loginName}}</div>
     </div>
 
@@ -49,10 +49,6 @@ export default {
   methods: {
     changeTab(tab) {
       this.currentTab = tab.id
-    },
-    // 跳转发布页面
-    publish() {
-      this.$router.push({name: "publish"})
     },
     signOut() {
       this.$store.dispatch("doWork").then(() => {

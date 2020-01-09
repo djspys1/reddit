@@ -86,6 +86,27 @@ export default new Vuex.Store({
         "Welcome to NEAR"
       );
     },
+    /**
+     * 创建栏目
+     * @param context
+     * @param data 栏目数据
+     * @constructor
+     */
+    CreateSubReddit(context, data) {
+      return context.state.contract.postSubreddit(data)
+    },
+    // #. 用户发布某个帖子
+    PostPosts(context) {
+      context.state.contract.postSubmit({"title": "title4","type":"0","subreddit_id": "3"}).then(response => {
+          if (response == 0) {
+              console.log("发表成功")
+          } else if (response == 1) {
+              console.log("subreddit_id不存在")
+          } else {
+              console.log("不应该发生！")
+          }
+      })
+    },
     // # 获取用户能看到的帖子
     // 获取用户能看见的的Submit ids
     GetPosts(context) {

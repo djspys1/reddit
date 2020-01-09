@@ -10,7 +10,7 @@
             <i-input v-model="formItem.textarea" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请描述文本"></i-input>
           </FormItem>
           <FormItem style="text-align: center">
-            <Button type="primary">Create</Button>
+            <Button type="primary" @click="publish">Create</Button>
           </FormItem>
         </Form>
       </i-col>
