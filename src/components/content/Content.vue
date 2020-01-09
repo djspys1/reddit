@@ -2,17 +2,17 @@
   <div class="content">
     <Row>
       <i-col :span="20">
-        <Row>
-          <i-col :span="24" class="content-tab">
-            <div class="spacer">
-              <span class="dropdown-title lightdrop">popular in: </span>
-              <div class="dropdown lightdrop">
-                <span class="selected">Everywhere</span>
-                <Icon type="md-arrow-dropdown" />
-              </div>
-            </div>
-          </i-col>
-        </Row>
+<!--        <Row>-->
+<!--          <i-col :span="24" class="content-tab">-->
+<!--            <div class="spacer">-->
+<!--              <span class="dropdown-title lightdrop">popular in: </span>-->
+<!--              <div class="dropdown lightdrop">-->
+<!--                <span class="selected">Everywhere</span>-->
+<!--                <Icon type="md-arrow-dropdown" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </i-col>-->
+<!--        </Row>-->
         <List>
           <ListItem v-for="item in 10" :key="item">
             {{ item }}

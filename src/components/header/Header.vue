@@ -1,8 +1,8 @@
 <template>
   <div class="header">
-    <div class="header-top">我的看板
-      <Icon type="md-arrow-dropdown"/>
-    </div>
+<!--    <div class="header-top">我的看板-->
+<!--      <Icon type="md-arrow-dropdown"/>-->
+<!--    </div>-->
     <div class="header-bottom">
       <a href="/" class="logo" title="">reddit.com</a>
       <ul class="tab-menu">
@@ -24,26 +24,27 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "Header",
   data() {
     return {
       tabs: [
-        {id: 1, name: '帖子'},
-        {id: 2, name: '栏目'}
+        {id: "1", name: '帖子'},
+        {id: "2", name: '栏目'}
       ],
-      currentTab: 1
     }
   },
   computed: {
     loginName() {
       return this.$store.getters.isLogin ? "sign out" : "sign in";
+    },
+    currentTab() {
+      return this.$store.state.currentTab
     }
   },
   methods: {
     changeTab(tab) {
-      this.currentTab = tab.id
+      this.$store.dispatch('ChangeTab', tab.id)
     },
     signOut() {
       this.$store.dispatch("doWork").then(() => {

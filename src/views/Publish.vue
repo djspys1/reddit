@@ -95,9 +95,9 @@ export default {
               if (res === 0) {
                 this.$router.push({ name: "home" });
               } else if (res === 1) {
-                this.$Message.info("栏目不存在");
+                this.$Message.error("栏目不存在");
               } else {
-                this.$Message.info("网络错误");
+                this.$Message.error("网络错误");
               }
             })
             .catch(() => {

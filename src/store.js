@@ -12,7 +12,7 @@ export default new Vuex.Store({
     walletAccount: null,
     accountId: null,
     contract: null,
-    currentTab: 1 // 当前tab项
+    currentTab: "1" // 当前tab项 1帖子，2栏目
   },
   getters: {
     isLogin(state) {
@@ -20,6 +20,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    ChangeTab(context, id) {
+      context.commit('CHANGE_TAB', id)
+    },
     async InitContract(context) {
       const near = await nearlib.connect(
         Object.assign(
@@ -101,6 +104,15 @@ export default new Vuex.Store({
       return context.state.contract.getAllSubreddits({})
     },
 
+    /**
+     * 订阅栏目
+     * @param context
+     * @param data
+     * @constructor
+     */
+    PostSubReddit(context, data) {
+      return context.state.contract.subscribeSubreddit(data)
+    },
     /**
      * 获取单个栏目
      * @param context
@@ -188,6 +200,9 @@ export default new Vuex.Store({
     },
     CHANGE_ACCOUNT_ID(state, payload) {
       state.accountId = payload;
+    },
+    CHANGE_TAB(state, payload) {
+      state.currentTab = payload;
     },
     CHANGE_CONTRACT(state, payload) {
       state.contract = payload;
