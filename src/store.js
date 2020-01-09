@@ -132,62 +132,36 @@ export default new Vuex.Store({
       }
       return context.state.contract.postSubmit(param)
     },
-    // # 获取用户能看到的帖子
     // 获取用户能看见的的Submit ids
     GetPosts(context) {
-      context.state.contract.getSeeSubmits({"user": context.state.accountId}).then(response => {
-        console.log(response)
-        if (response.objs == null || response.objs.length == 0 ) {
-          // 该用户没有内容
-          // 去订阅界面
-          console.log("去订阅感兴趣的subreddits!")
-        } else {
-          const obj_ids = response.objs; // obj_ids 为SubmitLikeObj 的id列表
-          console.log("obj_ids", obj_ids)
-
-          // 循环获取每个SubmitLikeObj内容
-          for (var i=0; i<obj_ids.length; i++) {
-            window.contract.getSeeSubmitDetail({"id": obj_ids[i]}).then(response => {
-              if (response == null || response.length == 0) {
-                console.log("不应该发生")
-              } else{
-                var SubmitLikeObj = response[0];
-                // 再根据submit id 去获取具体的title
-                window.contract.getSubmitDetail({"id": SubmitLikeObj.submit_id}).then(response => {
-                  if (response.length == 0) {
-                    console.log("没有该id对应的submit")
-                  } else {
-                    const r = response[0]; // 这里本来应该返回单个对象，但由于某些限制，总是用数组包装后返回
-
-                    console.log("-------");
-                    console.log("用户:", window.accountId);
-                    console.log("SubmitLikeObj id:", SubmitLikeObj.id);
-                    console.log("喜不喜欢:", SubmitLikeObj.like_or_not);
-                    console.log("submit id", SubmitLikeObj.submit_id);
-
-                    console.log("-");
-                    console.log("submit id:", r.id);
-                    console.log("submit title:", r.title);
-                    console.log("submit 显示文字还是超链接:", r.type);
-                    console.log("submit 栏目:", r.subreddit_id);
-                    console.log("submit 创建者:", r.creator);
-                    console.log("submit 喜欢数量:", r.likes);
-                    console.log("submit 评论ids列表:", r.comment_ids);
-                  }
-                })
-              }
-            })
-          }
-        }
-      })
+      return context.state.contract.getSeeSubmits({"user": context.state.accountId})
     },
-    // 用户点赞点踩什么的
-    UserLike(context) {
-      const submit_like_obj_id = 5;
-      const like_or_not = 1;
-      context.state.contract.likeSubmitLikeObj({"id": submit_like_obj_id.toString(),"like_or_not":like_or_not}).then(response => {
-              console.log('response', response)
-      })
+    /**
+     * 获取单个帖子信息
+     * @param context
+     * @param data
+     * @constructor
+     */
+    GetPost(context, data) {
+      context.state.contract.getSeeSubmitDetail(data)
+    },
+    /**
+     * 获取帖子title
+     * @param context
+     * @param data
+     * @constructor
+     */
+    GetPostTitle(context, data) {
+      context.state.contract.getSubmitDetail(data)
+    },
+    /**
+     * 用户评价
+     * @param context
+     * @param data
+     * @constructor
+     */
+    UserLikeOrNot(context, data) {
+      context.state.contract.likeSubmitLikeObj(data)
     }
 
   },

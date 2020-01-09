@@ -12,16 +12,17 @@ export default {
   props: {
     voteNumber: {
       default: 0
-    }
+    },
+    item: null
   },
   methods: {
     // 赞
     awesome() {
-      this.$store.dispatch("UserLike")
+      this.$store.dispatch("UserLikeOrNot", {id: this.item.id, like_or_not: 1})
     },
     // 踩
     low() {
-      this.$store.dispatch("UserLike")
+      this.$store.dispatch("UserLikeOrNot", {id: this.item.id, like_or_not: -1})
     }
   }
 }

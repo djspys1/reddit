@@ -39,6 +39,7 @@ export default {
      * 获取栏目列表
      */
     getSubs() {
+      this.lists = []
       this.$store.dispatch("GetSubReddits").then(res => {
         res.forEach(item => {
           this.$store.dispatch("GetSubReddit", item).then(response => {
@@ -46,7 +47,6 @@ export default {
           });
         });
       });
-      console.log(this.lists)
     },
     /**
      * 订阅栏目
@@ -62,7 +62,7 @@ export default {
                 size: 18
               }
             }),
-            h("div", "提交中")
+            h("div", "订阅中")
           ]);
         }
       });
