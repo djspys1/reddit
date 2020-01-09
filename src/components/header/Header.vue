@@ -16,7 +16,7 @@
     </div>
     <div class="header-bottom-right">
       <div class="create">创建栏目</div>
-      <div class="publish">发布帖子</div>
+      <div class="publish" @click="publish">发布帖子</div>
       <div class="sign" @click="signOut">{{loginName}}</div>
     </div>
 
@@ -49,6 +49,10 @@ export default {
   methods: {
     changeTab(tab) {
       this.currentTab = tab.id
+    },
+    // 跳转发布页面
+    publish() {
+      this.$router.push({name: "publish"})
     },
     signOut() {
       this.$store.dispatch("doWork").then(() => {
@@ -105,6 +109,7 @@ export default {
           text-align: center;
           background-color: #EFF7FF;
           border-radius: 7px;
+          cursor: pointer;
         }
       }
 
