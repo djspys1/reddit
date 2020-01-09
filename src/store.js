@@ -35,7 +35,7 @@ export default new Vuex.Store({
       context.commit("CHANGE_WALLET_ACCOUNT", walletAccount);
       const accountId = walletAccount.getAccountId();
       context.commit("CHANGE_ACCOUNT_ID", accountId);
-      const contract = await near.loadContract(nearConfig.contractName, {
+      const contract = await near.loadContract(nearConfig("development").contractName, {
         viewMethods: [
           // verid
           "getAllSubreddits",
