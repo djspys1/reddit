@@ -39,7 +39,7 @@ export default {
     }
   },
   methods: {
-    this.$store.dispatch()
+    // this.$store.dispatch()
   },
   components: { Vote }
 };

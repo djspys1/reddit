@@ -19,11 +19,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("InitContract").then(() => {
-        if (this.isLogin) {
-          this.$router.replace({ name: "home" });
-        } else {
-          this.$router.replace({ name: "login" });
-        }
+        // if (this.isLogin) {
+        //   this.$router.replace({ name: "home" });
+        // } else {
+        //   this.$router.replace({ name: "login" });
+        // }
       })
       .catch(() => {
         this.$router.replace({ name: "login" });

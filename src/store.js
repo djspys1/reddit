@@ -111,7 +111,6 @@ export default new Vuex.Store({
                 console.log("不应该发生")
               } else{
                 var SubmitLikeObj = response[0];
-
                 // 再根据submit id 去获取具体的title
                 window.contract.getSubmitDetail({"id": SubmitLikeObj.submit_id}).then(response => {
                   if (response.length == 0) {
@@ -139,6 +138,14 @@ export default new Vuex.Store({
             })
           }
         }
+      })
+    },
+    // 用户点赞点踩什么的
+    userLike(context) {
+      const submit_like_obj_id = 5;
+      const like_or_not = 1;
+      context.state.contract.likeSubmitLikeObj({"id": submit_like_obj_id.toString(),"like_or_not":like_or_not}).then(response => {
+              console.log('response', response)
       })
     }
 
