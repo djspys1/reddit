@@ -19,7 +19,10 @@ export default {
     Footer,
     Content,
     Header
-  }
+  },
+  // async created() {
+  //   await this.$store.dispatch("InitContract")
+  // }
 }
 </script>
 

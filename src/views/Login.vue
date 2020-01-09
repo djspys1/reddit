@@ -8,7 +8,7 @@
       <p id="speech" class="speech"></p>
     </div>
     <div id="signed-out-flow" class="d-none">
-      <button id="sign-in-button" @click="signIn">Sign-in</button>
+      <button id="sign-in-button" @click="readySign">Sign-in</button>
     </div>
   </div>
 </template>
@@ -20,11 +20,21 @@ export default {
   data() {
     return {}
   },
+  watch:{
+    isLogin(val) {
+      if (val) {
+        this.$router.push({ name: "home" });
+      }
+    }
+  },
   methods: {
-    signIn() {
-      this.$store.dispatch("doWork").then(() => {
-        this.$router.push({name: 'home'})
+    readySign() {
+      this.$store.dispatch("InitContract").then(() => {
+        this.sign()
       })
+    },
+    sign() {
+      this.$store.dispatch("doWork")
     }
   }
 }

@@ -35,14 +35,16 @@ export default {
       voteNumber: 0
     };
   },
-  created() {
+  mounted() {
     this.getPosts()
-    this.getVotes()
+    // this.getVotes()
   },
   methods: {
     // 获取帖子列表
-    getPosts() {
-      this.$store.dispatch("GetPosts")
+    async getPosts() {
+      this.$store.dispatch("InitContract").then(() => {
+        this.$store.dispatch("GetPosts")
+      })
     },
     // 获取点赞数量，此处暂用假数据替代
     getVotes() {

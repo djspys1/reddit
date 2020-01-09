@@ -14,9 +14,6 @@ export default new Vuex.Store({
     contract: null
   },
   getters: {
-    loginName(getters) {
-      return getters.isLogin ? "sign out" : "sign in";
-    },
     isLogin(state) {
       return (state.walletAccount && state.walletAccount.isSignedIn()) || false;
     }
@@ -35,10 +32,8 @@ export default new Vuex.Store({
       );
       context.commit("CHANGE_NEAR", near);
       const walletAccount = new nearlib.WalletAccount(near);
-      console.log(walletAccount)
       context.commit("CHANGE_WALLET_ACCOUNT", walletAccount);
       const accountId = walletAccount.getAccountId();
-      console.log(accountId)
       context.commit("CHANGE_ACCOUNT_ID", accountId);
       const contract = await near.loadContract(nearConfig.contractName, {
         viewMethods: [
@@ -72,21 +67,20 @@ export default new Vuex.Store({
       context.commit("CHANGE_CONTRACT", contract);
     },
     async doWork(context) {
-      if (context.state.walletAccount.isSignedIn()) {
+      if (context.getters.isLogin) {
         await context.dispatch("signedOutFlow");
       } else {
         await context.dispatch("signedInFlow");
       }
     },
     async signedOutFlow(context) {
+      // await context.state.contract.welcome({ name: context.state.accountId });
       await context.state.walletAccount.signOut();
       // 体验太差，去掉
       // window.location.replace(window.location.origin + window.location.pathname);
     },
 
     async signedInFlow(context) {
-      console.log(context.state.accountId)
-      await context.state.contract.welcome({ name: context.state.accountId });
       await context.state.walletAccount.requestSignIn(
         nearConfig("development").contractName,
         "Welcome to NEAR"

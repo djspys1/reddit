@@ -17,7 +17,7 @@ export default {
   methods: {
     // 赞
     awesome() {
-      this.$store.dispatch("userLike")
+      this.$store.dispatch("UserLike")
     },
     // 踩
     low() {

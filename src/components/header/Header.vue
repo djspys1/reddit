@@ -14,7 +14,7 @@
         </li>
       </ul>
     </div>
-    <div class="header-bottom-right" @click="sign">{{loginName}}</div>
+    <div class="header-bottom-right" @click="signOut">{{loginName}}</div>
   </div>
 </template>
 
@@ -37,16 +37,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'loginName'
-    ])
+    loginName() {
+      return this.$store.getters.isLogin ? "sign out" : "sign in";
+    }
   },
   methods: {
     changeTab(tab) {
       this.currentTab = tab.id
     },
-    sign() {
+    signOut() {
       this.$store.dispatch("doWork").then(() => {
+        this.$router.push({name: "login"})
       })
     }
   }
