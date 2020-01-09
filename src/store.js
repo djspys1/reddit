@@ -95,17 +95,29 @@ export default new Vuex.Store({
     CreateSubReddit(context, data) {
       return context.state.contract.postSubreddit(data)
     },
+    // 获取所有栏目
+    GetSubReddits(context) {
+      return context.state.contract.getAllSubreddits({})
+    },
+
+    /**
+     * 获取单个栏目
+     * @param context
+     * @param id
+     * @returns {Q.Promise<any> | * | Q.Promise<T | never> | PromiseLike<T | never> | Promise<T | never>}
+     * @constructor
+     */
+    GetSubReddit(context, id) {
+      return context.state.contract.getSubredditDetail({"id": id})
+    },
     // #. 用户发布某个帖子
-    PostPosts(context) {
-      context.state.contract.postSubmit({"title": "title4","type":"0","subreddit_id": "3"}).then(response => {
-          if (response == 0) {
-              console.log("发表成功")
-          } else if (response == 1) {
-              console.log("subreddit_id不存在")
-          } else {
-              console.log("不应该发生！")
-          }
-      })
+    PostPosts(context, data) {
+      const param = {
+        title: data.title,
+        subreddit_id: data.subreddit_id,
+        type: Number(data.type),
+      }
+      return context.state.contract.postSubmit(param)
     },
     // # 获取用户能看到的帖子
     // 获取用户能看见的的Submit ids
