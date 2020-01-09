@@ -143,7 +143,7 @@ export default new Vuex.Store({
      * @constructor
      */
     GetPost(context, data) {
-      context.state.contract.getSeeSubmitDetail(data)
+      return context.state.contract.getSeeSubmitDetail(data)
     },
     /**
      * 获取帖子title
@@ -152,7 +152,7 @@ export default new Vuex.Store({
      * @constructor
      */
     GetPostTitle(context, data) {
-      context.state.contract.getSubmitDetail(data)
+      return context.state.contract.getSubmitDetail(data)
     },
     /**
      * 用户评价
@@ -161,7 +161,8 @@ export default new Vuex.Store({
      * @constructor
      */
     UserLikeOrNot(context, data) {
-      context.state.contract.likeSubmitLikeObj(data)
+      console.log(data)
+      return context.state.contract.likeSubmitLikeObj(data)
     }
 
   },
