@@ -14,7 +14,12 @@
         </li>
       </ul>
     </div>
-    <div class="header-bottom-right" @click="signOut">{{loginName}}</div>
+    <div class="header-bottom-right">
+      <div class="create">创建栏目</div>
+      <div class="publish">发布帖子</div>
+      <div class="sign" @click="signOut">{{loginName}}</div>
+    </div>
+
   </div>
 </template>
 
@@ -87,13 +92,22 @@ export default {
 
       &-right {
         position: absolute;
+        display: flex;
         right: 0px;
         bottom: 0px;
-        background-color: #EFF7FF;
         padding: 4px;
         line-height: 12px;
-        border-top-left-radius: 7px;
+        .publish, .sign, .create {
+          margin: 0 10px;
+          width: 60px;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
+          background-color: #EFF7FF;
+          border-radius: 7px;
+        }
       }
+
     }
 
     .tab-menu {
