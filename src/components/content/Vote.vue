@@ -21,7 +21,7 @@ export default {
     },
     // 踩
     low() {
-      this.$store.dispatch("userLike")
+      this.$store.dispatch("UserLike")
     }
   }
 }

@@ -94,7 +94,7 @@ export default new Vuex.Store({
     },
     // # 获取用户能看到的帖子
     // 获取用户能看见的的Submit ids
-    getSubmits(context) {
+    GetPosts(context) {
       context.state.contract.getSeeSubmits({"user": context.state.accountId}).then(response => {
         if (response.objs == null || response.objs.length == 0 ) {
           // 该用户没有内容
@@ -141,7 +141,7 @@ export default new Vuex.Store({
       })
     },
     // 用户点赞点踩什么的
-    userLike(context) {
+    UserLike(context) {
       const submit_like_obj_id = 5;
       const like_or_not = 1;
       context.state.contract.likeSubmitLikeObj({"id": submit_like_obj_id.toString(),"like_or_not":like_or_not}).then(response => {

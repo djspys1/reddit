@@ -31,15 +31,23 @@ import Vote from "./Vote";
 export default {
   name: "Content",
   data() {
-    return {};
+    return {
+      voteNumber: 0
+    };
   },
-  computed: {
-    voteNumber() {
-      return parseInt(Math.random() * (1000 - 1 + 1) + 1, 10);
-    }
+  created() {
+    this.getPosts()
+    this.getVotes()
   },
   methods: {
-    // this.$store.dispatch()
+    // 获取帖子列表
+    getPosts() {
+      this.$store.dispatch("GetPosts")
+    },
+    // 获取点赞数量，此处暂用假数据替代
+    getVotes() {
+      this.voteNumber =  parseInt(Math.random() * (1000 - 1 + 1) + 1, 10);
+    }
   },
   components: { Vote }
 };
