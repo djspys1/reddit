@@ -22,7 +22,7 @@ export default {
   watch: {
     isLogin(val) {
       if (val) {
-        this.$router.push({ name: "home" });
+        this.$router.push({ name: "home" }).catch(e => {console.log(e)});
       }
     }
   },

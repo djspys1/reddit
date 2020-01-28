@@ -19,7 +19,7 @@ export default {
 
   created() {
     this.$store.dispatch("InitContract").then(() => {
-        if (!this.isLogin) {
+        if (!this.isLogin && this.$route.name !== "login") {
           this.$router.replace({ name: "login" });
         }
       })
