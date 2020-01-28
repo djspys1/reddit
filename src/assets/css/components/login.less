@@ -1,0 +1,37 @@
+.login {
+	margin-top: 150px;
+	&-header {
+		.flex-column-center;
+		&-logo {
+			width: 33%;
+		}
+		.app-logo {
+			animation: App-logo-spin infinite 20s linear;
+			pointer-events: none;
+			margin: 20px;
+		}
+	}
+	&-footer {
+	  text-align: center;
+		.sign-in-button {
+			padding: 5px;
+			color: @button-color;
+			border-radius: 10px;
+			border: @button-border;
+			&:hover {
+				cursor: pointer;
+				color: white;
+				background: #0072CE;
+			}
+		}
+	}
+
+	@keyframes App-logo-spin {
+	  from {
+	    transform: rotate(0deg);
+	  }
+	  to {
+	    transform: rotate(360deg);
+	  }
+	}
+}
