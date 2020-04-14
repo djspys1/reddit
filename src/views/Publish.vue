@@ -41,7 +41,6 @@ export default {
   name: "publish",
   data() {
     return {
-      test: '关闭issue',
       formItem: {
         title: "",
         subreddit_id: "",
