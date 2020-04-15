@@ -104,7 +104,7 @@ export default {
               this.$Spin.hide();
             });
         } else {
-          this.$Message.error("请检查提交内容");
+          this.$Message.error("请检查提交内容（假装冲突了）");
         }
       });
     },
